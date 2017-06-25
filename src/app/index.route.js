@@ -9,17 +9,23 @@
   function routerConfig($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('home', {
-        url: '/',
+        url: '/another',
         templateUrl: 'app/main/main.html',
         controller: 'MainController',
         controllerAs: 'main'
       })
       .state('uploadVideo', {
-        url: '/upload',
+        url: '/',
         templateUrl: 'app/components/uploadVideo/uploadVideo.html',
         controller: 'UploadVideoController',
         controllerAs: 'vm'
-      });
+      })
+      .state('about', {
+        url: '/about',
+        templateUrl: 'app/components/about/about.html',
+        controller: 'AboutController',
+        controllerAs: 'vm'
+    });
 
     $urlRouterProvider.otherwise('/');
   }

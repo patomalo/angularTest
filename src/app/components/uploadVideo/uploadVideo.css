@@ -1,0 +1,17 @@
+.inputFile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.progress {
+  margin: 15px 0px;
+}
+.video-image {
+  max-width: 150px;
+}
+.no-videos {
+  margin: 20px 5px;
+}

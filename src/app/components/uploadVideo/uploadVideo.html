@@ -1,5 +1,57 @@
 <div class="container">
-  <h1>New Title</h1>
+  <div class="jumbotron text-center">
+    <h2>Welcome to Upload video page</h2>
+    <p class="lead">
+      You can upload, edit and delete your video
+    </p>
+  </div>
   <div>
+    <input class="inputFile" id="submit" name="submit" type="file" name="files[]">
+    <label type="button" class="btn btn-success" for="submit">
+      <span class="glyphicon glyphicon-plus"></span>
+      Add File
+    </label>
+  </div>
+  <div id="progress" class="progress" ng-if="vm.progressBarActive">
+    <div class="progress-bar progress-bar-info progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+      <span class="sr-only">0% Complete</span>
+    </div>
+  </div>
+  <div>
+    <table class="table table-striped" ng-if="vm.videoList.length > 0">
+      <thead>
+      <tr>
+        <th>#</th>
+        <th>Picture</th>
+        <th>Title</th>
+        <th>Size</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="option in vm.videoList">
+        <td>{{$index +1}}</td>
+        <td>
+          <a ng-href="{{option.url}}" target="_blank"><img ng-src="{{option.image}}" class="video-image"/></a>
+
+        </td>
+        <td>{{option.title}}</td>
+        <td>{{option.size}}</td>
+      </tr>
+      <!--<tr>
+        <td>2</td>
+        <td>alvaro</td>
+        <td>b.jpg</td>
+        <td>a.jpg</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>patty</td>
+        <td>c.png</td>
+        <td>a.jpg</td>
+      </tr>-->
+      </tbody>
+    </table>
+    <p ng-if="vm.videoList.length <= 0" class="no-videos">No videos uploaded</p>
   </div>
 </div>
+

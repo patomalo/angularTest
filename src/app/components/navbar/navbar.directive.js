@@ -23,14 +23,18 @@
     /** @ngInject */
     function NavbarController(moment, $state) {
       var vm = this;
-
+      vm.tabActive = true;
       // "vm.creationDate" is available by directive option "bindToController: true"
       vm.relativeDate = moment(vm.creationDate).fromNow();
 
       vm.goToUpload = function () {
-        $state.go('uploadVideo');
-       console.log("Dota Local");
-      }
+        vm.tabActive = false;
+        $state.go('about');
+      };
+
+      vm.homeActive = function () {
+        vm.tabActive = true;
+      };
     }
   }
 
