@@ -1,12 +1,12 @@
 <div class="container">
   <div class="jumbotron text-center">
-    <h2>Welcome to Upload video page</h2>
+    <h2>Welcome to WISTIA Upload video<small> test project created for Process.st</small></h2>
     <p class="lead">
-      You can upload, edit and delete your video
+      You can upload and delete your video
     </p>
   </div>
   <div>
-    <input class="inputFile" id="submit" name="submit" type="file" name="files[]">
+    <input class="inputFile" id="submit" name="submit" type="file" name="files[]" accept=".mp4, .flv, .mkv, .avi, .3pp">
     <label type="button" class="btn btn-success" for="submit">
       <span class="glyphicon glyphicon-plus"></span>
       Add File
@@ -25,6 +25,8 @@
         <th>Picture</th>
         <th>Title</th>
         <th>Size</th>
+        <th></th>
+        <th></th>
       </tr>
       </thead>
       <tbody>
@@ -32,23 +34,17 @@
         <td>{{$index +1}}</td>
         <td>
           <a ng-href="{{option.url}}" target="_blank"><img ng-src="{{option.image}}" class="video-image"/></a>
-
         </td>
         <td>{{option.title}}</td>
         <td>{{option.size}}</td>
+        <td>
+          <button type="button" class="btn btn-danger" ng-click="vm.deleteVideo(option.hashedId)">Delete</button>
+
+        </td>
+        <td>
+          <a type="button" class="btn btn-success" ng-href="{{option.url}}" target="_blank">View</a>
+        </td>
       </tr>
-      <!--<tr>
-        <td>2</td>
-        <td>alvaro</td>
-        <td>b.jpg</td>
-        <td>a.jpg</td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td>patty</td>
-        <td>c.png</td>
-        <td>a.jpg</td>
-      </tr>-->
       </tbody>
     </table>
     <p ng-if="vm.videoList.length <= 0" class="no-videos">No videos uploaded</p>

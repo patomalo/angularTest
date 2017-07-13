@@ -34,6 +34,7 @@
         url: 'https://api.wistia.com/v1/medias.json?api_password=6f2bf05ae1fcde069f539257ff7696ea3a6cd94be21dba0e5ec8d8386516d2cc',
         method: 'GET'
       }).success(function (response) {
+        //console.log("Patomalo", response);
         vm.videoList = [];
         if(response.length > 0) {
           for(var i = 0; i < response.length; i++) {
@@ -44,7 +45,8 @@
               image: row.thumbnail.url,
               url: row.assets[0].url,
               title: row.name,
-              size: newSize + ' MB'
+              size: newSize + ' MB',
+              hashedId: row.hashed_id
             });
           }
         }
@@ -89,7 +91,7 @@
           });*/
 
           toastr.success(data.response().textStatus);
-          
+
         },
         error: function (jqXHR, textStatus, errorThrown) {
           if(jqXHR.responseJSON) {
@@ -103,6 +105,21 @@
         }
       });
     });
+
+    vm.deleteVideo = function (videoId) {
+      //console.log("patomalo", videoId);
+      var requestUrl = 'https://api.wistia.com/v1/medias/' + videoId + '.json?api_password=6f2bf05ae1fcde069f539257ff7696ea3a6cd94be21dba0e5ec8d8386516d2cc';
+      $http({
+        url: requestUrl,
+        method: 'DELETE'
+      }).success(function (response) {
+        //console.log("Patomalo", response);
+        toastr.success("Video Deleted");
+        getAllVideos();
+      }).error(function (response) {
+        toastr.error("Error: " + response);
+      });
+    };
 
     init();
   }
